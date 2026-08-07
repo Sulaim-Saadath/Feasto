@@ -239,9 +239,11 @@ Think of the Django project as the **reception desk** of a company.
 ## One-Line Summary
 
 Connected the main Django project with `feastoApp` so that the app can handle website requests.
+
 # User Navigation & Registration Flow
 
 ## Files Modified
+
 - `feastoApp/views.py`
 - `feastoApp/urls.py`
 - `templates/signup.html`
@@ -254,6 +256,7 @@ Connected the main Django project with `feastoApp` so that the app can handle we
 ### 1. Created View Functions
 
 Created view functions to:
+
 - Display the Home page.
 - Open the Sign Up page.
 - Open the Sign In page.
@@ -268,6 +271,7 @@ A view function contains the application's logic. It receives a request from the
 ### 2. Configured URL Routing
 
 Created URL patterns for:
+
 - Home page
 - Sign Up page
 - Sign In page
@@ -282,6 +286,7 @@ URL routing connects browser requests to the appropriate view function, allowing
 ### 3. Designed the Sign Up Page
 
 Created a registration form to collect:
+
 - Username
 - Password
 - Email
@@ -299,6 +304,7 @@ The Sign Up page collects user details that will later be stored in the database
 ### 4. Designed the Sign In Page
 
 Created a login form containing:
+
 - Username
 - Password
 
@@ -334,3 +340,72 @@ This verifies that the form submission works correctly before integrating the da
 ## One-Line Summary
 
 Implemented the basic user navigation and registration flow by creating views, configuring URL routing, designing Sign Up and Sign In pages, and processing submitted form data.
+
+# Django Admin - Superuser Creation
+
+## Command Used
+
+```bash
+python manage.py createsuperuser
+```
+
+---
+
+## Purpose
+
+Created a **Superuser** (Administrator account) to access Django's built-in Admin Panel.
+
+---
+
+## Why Was This Needed?
+
+The Django Admin Panel is a powerful interface that allows administrators to manage application data without writing additional code.
+
+A Superuser has complete access to:
+
+- Create, Read, Update, and Delete (CRUD) data.
+- Manage users and permissions.
+- View registered models.
+- Perform administrative tasks.
+
+---
+
+## Information Entered
+
+- Username
+- Email Address
+- Password
+
+During creation, Django checked the password strength and displayed warnings because the password was:
+
+- Too short
+- Too common
+- Entirely numeric
+
+The warnings were bypassed since this was a development project.
+
+---
+
+## Result
+
+A Superuser account was successfully created and stored in the database.
+
+The Admin Panel can now be accessed by running the development server and visiting:
+
+`http://127.0.0.1:8000/admin/`
+
+---
+
+## What I Learned
+
+- Django provides a built-in Admin Panel.
+- Only a Superuser can access all administrative features.
+- Django validates password strength for security.
+- The Admin Panel is useful for managing application data without creating custom interfaces.
+
+---
+
+## One-Line Summary
+
+Created a Superuser account to gain full access to Django's built-in Admin Panel for managing application data.
+
