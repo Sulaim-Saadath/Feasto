@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import Customer
+from .models import Customer, Restaurant
 
 # Create your views here.
 def login(request):
@@ -46,3 +46,44 @@ def signin(request):
             return render(request, 'customer_home.html')
     except Customer.DoesNotExist:
         return render(request, 'fail.html')
+
+def open_add_restaurant(request):
+    return render(request, 'open_add_restaurant.html')
+
+def add_restaurant(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        picture = request.POST.get('picture')
+        cuisine = request.POST.get('cuisine')
+        rating = request.POST.get('rating')
+    
+    try:
+        if Restaurant.objects.filter(name=name).exists():
+            return HttpResponse("Duplicate Restaurant!")
+    except:
+        Restaurant.objects.create(
+            name = name,
+            picture = picture,
+            cuisine = cuisine,
+            rating = rating,
+        )
+    return render(request, "admin_home.html")
+
+def open_show_restaurant(request):
+    restaurantList = Restaurant.objects.all()
+    return render(request, "show_restaurants.html", {"restaurantList": restaurantList})
+
+def open_update_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    return render(request, 'update_restaurant.html', {"restaurant":restaurant})
+
+def update_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    if request.method == 'POST':
+        restaurant.name = request.POST.get('name')
+        restaurant.picture = request.POST.get('picture')
+        restaurant.cuisine = request.POST.get('cuisine')
+        restaurant.rating = request.POST.get('rating')
+        restaurant.save()
+        restaurantList = Restaurant.objects.all()
+        return render(request, "show_restaurants.html", {"restaurantList": restaurantList})
