@@ -6,7 +6,7 @@
     <title>updateRestaurant</title>
 </head>
 <body>
-     <form method="POST" action="{% url 'update_restaurant' restaurant.id %}">
+     <form method="PUT" action="{% url 'update_restaurant' restaurant.id %}">
         {% csrf_token %}
         <label>Restaurant Name</label>
         <input type="text" name="name" value="{{restaurant.name}}">

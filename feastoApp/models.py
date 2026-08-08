@@ -13,3 +13,11 @@ class Restaurant(models.Model):
     picture = models.URLField(max_length=200, default='https://placehold.co/600x400?text=No+Image')
     cuisine = models.CharField(max_length=200)
     rating = models.FloatField()
+    
+class Items(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="items")
+    name = models.CharField(max_length=20)
+    description = models.CharField(max_length=200)
+    price = models.FloatField()
+    vegetarian = models.BooleanField(default=False)
+    picture = models.URLField(max_length=400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')

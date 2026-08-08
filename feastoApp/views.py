@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import Customer, Restaurant
+from .models import Customer, Restaurant, Items
 
 # Create your views here.
 def login(request):
@@ -56,17 +56,19 @@ def add_restaurant(request):
         picture = request.POST.get('picture')
         cuisine = request.POST.get('cuisine')
         rating = request.POST.get('rating')
-    
-    try:
+
         if Restaurant.objects.filter(name=name).exists():
             return HttpResponse("Duplicate Restaurant!")
-    except:
+
         Restaurant.objects.create(
-            name = name,
-            picture = picture,
-            cuisine = cuisine,
-            rating = rating,
+            name=name,
+            picture=picture,
+            cuisine=cuisine,
+            rating=rating,
         )
+
+        return render(request, "admin_home.html")
+
     return render(request, "admin_home.html")
 
 def open_show_restaurant(request):
@@ -79,7 +81,7 @@ def open_update_restaurant(request, restaurant_id):
 
 def update_restaurant(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
-    if request.method == 'POST':
+    if request.method == 'PUT':
         restaurant.name = request.POST.get('name')
         restaurant.picture = request.POST.get('picture')
         restaurant.cuisine = request.POST.get('cuisine')
@@ -87,3 +89,37 @@ def update_restaurant(request, restaurant_id):
         restaurant.save()
         restaurantList = Restaurant.objects.all()
         return render(request, "show_restaurants.html", {"restaurantList": restaurantList})
+
+def delete_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    restaurant.delete()
+    restaurantList = Restaurant.objects.all()
+    return render(request, "show_restaurants.html", {"restaurantList": restaurantList})
+
+def open_update_menu(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    itemList = restaurant.items.all()
+    return render(request, "update_menu.html", {"itemList":itemList, "restaurant":restaurant})
+
+def update_menu(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        vegetarian = request.POST.get('vegetarian') == 'on'        
+        picture = request.POST.get('picture')
+        restaurant = restaurant
+        if Items.objects.filter(name=name).exists():
+            return HttpResponse("DUPLICATE FOOD ITEM!")
+        Items.objects.create(
+            name = name,
+            description = description,
+            price = price,
+            vegetarian = vegetarian,
+            picture = picture,
+            restaurant = restaurant
+        )
+    return render(request, "admin_home.html")
+        
+    
