@@ -199,15 +199,19 @@ def orders(request, username):
     customer = get_object_or_404(Customer, username=username)
     cart = Cart.objects.filter(customer=customer).first()
 
-    # Fetch cart items and total price before clearing the cart
-    cart_items = cart.items.all() if cart else []
+    cart_items = list(cart.items.all()) if cart else []
+
+    print("BEFORE CLEAR:", cart_items)
+    print("NUMBER OF ITEMS:", len(cart_items))
+
     total_price = cart.total_price() if cart else 0
 
-    # Clear the cart after fetching its details
     if cart:
         cart.items.clear()
 
-    return render(request, 'delivery/orders.html', {
+    print("AFTER CLEAR:", list(cart.items.all()))
+
+    return render(request, 'orders.html', {
         'username': username,
         'customer': customer,
         'cart_items': cart_items,

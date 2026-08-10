@@ -3,20 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link href="{% static 'sign_in.css' %}" rel="stylesheet" />
     <title>SIGN IN</title>
   </head>
   <body>
-    <h3>SIGN IN below</h3>
-    <form  action="{% url 'signin' %}" method="POST">
-        {% csrf_token %}
-      <label>Username</label>
-      <input type="text" name="username" />
-      <br /><br />
-      <label>Password</label>
-      <input type="password" name="password" />
-      <br /><br />
-      <br /><br />
-      <button type="submit">SIGN IN</button>
-    </form>
-  </body> 
+    <section class="signin_section">
+      <div class="signin_card">
+        <h2 class="signin_title">Sign In</h2>
+        <p class="signin_description">
+          Sign in to continue ordering your favorite food.
+        </p>
+        <form action="{% url 'signin' %}" method="POST">
+          {% csrf_token %}
+          <div class="form_group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="👤 Enter User Name" />
+          </div>
+          <div class="form_group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="🔒 Enter the password"/>
+          </div>
+          <button type="submit" class="signin_button">Sign In</button>
+        </form>
+
+        <p class="signup_text">
+          Don't have an account?
+          <a href="{% url 'open_signup' %}">Sign Up</a>
+        </p>
+      </div>
+    </section>
+  </body>
 </html>

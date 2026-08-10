@@ -48,6 +48,7 @@
         handler: function (response) {
           alert("Payment Successful!");
           console.log(response);
+          window.location.href = "{% url 'orders' username %}";
         },
 
         prefill: {
