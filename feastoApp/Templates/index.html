@@ -1,18 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feasto</title>
-<!-- Connecting CSS to the html file -->
+    <!-- Connecting CSS to the html file -->
     {% load static %}
-    <link href="{%static 'style.css'%}" rel="stylesheet">
-</head>
-<body>
-    <h1>Feasto - where you find true taste!</h1>
-    <br>
-    <a href="open_signup">Sign Up</a>
-    <br>
-    <a href="open_signin">Sign In</a>
-</body>
+    <link href="{% static 'style.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <nav>
+      <div>
+        <h1 class="app_name">Feasto</h1>
+      </div>
+      <div class="auth_links">
+        <a class="nav_link signup_link" href="open_signup">Sign Up</a>
+        <a class="nav_link signin_link" href="open_signin">Sign In</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero_content">
+        <h2>Discover Your True Taste.</h2>
+        <p>
+          Delicious food from your favorite restaurants, delivered right to your
+          doorstep.
+        </p>
+        <a class="hero_button" href="#">Explore Restaurants</a>
+      </div>
+      <div class="hero_image">
+        <img
+          src="https://images.openai.com/static-rsc-4/GDDiEEXz92ITBt5OhnhUnslLsHfd8DNBtLje8cpuD2GiGiiTmykGSCLJLH7Z__MqYisK7YlcX3DpN2Hdz38k6qbg4PhFiJGzBrChlTMixMglDZ1Gft3jDwVvlOTPKCQBME7LokAUQrgzFcVYnYZdIQVWQ_du3OKUMJuwEJbBQJQ0I1jx7Q9mnUxRQ3PU38NW?purpose=fullsize"
+          alt="Delicious Food"
+        />
+      </div>
+    </section>
+    <section class="features">
+      <div class="feature_card">
+        <h3>🍔 Wide Variety</h3>
+        <p>Choose from a wide range of delicious food.</p>
+      </div>
+      <div class="feature_card">
+        <h3>⚡ Fast Delivery</h3>
+        <p>Get your favorite food delivered quickly.</p>
+      </div>
+      <div class="feature_card">
+        <h3>⭐ Top Rated</h3>
+        <p>Discover highly rated restaurants.</p>
+      </div>
+    </section>
+  </body>
 </html>

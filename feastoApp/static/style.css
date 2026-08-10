@@ -1,3 +1,105 @@
-body {
-    background-color: aquamarine;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  border-bottom: 1px solid #eee;
+}
+.app_name {
+  color: #ff6b35;
+  font-size: 30px;
+  margin: 0px;
+}
+.nav_link {
+  text-decoration: none;
+  color: #1f2937;
+}
+.auth_links {
+  display: flex;
+  gap: 20px;
+}
+.signup_link {
+  background-color: #ff6b35;
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: white;
+}
+.signup_link:hover {
+    color: white;
+    background-color: #e85a2a;
+    transition: all 0.3s ease;
+    transform: translateY(-5px);
+}
+.signin_link {
+  padding: 10px 5px;
+}
+.signin_link:hover {
+  color: #ff6b35;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 25px;
+}
+.hero_content h2 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #1f2937;
+  max-width: 600px;
+}
+.hero_content p {
+  font-size: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.hero_image img {
+  width: 400px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.hero_image img:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+.hero_button {
+  background-color: #ff6b35;
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+.hero_button:hover {
+  background-color: #e85a2a;
+  transform: translateY(-3px);
+}
+.features {
+  display: flex;
+  gap: 25px;
+  padding: 40px 25px;
+}
+.feature_card {
+  background-color: #fff7ed;
+  padding: 25px;
+  border-radius: 15px;
+  flex: 1;
+  min-height: 100px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.feature_card h3 {
+  color: #1f2937;
+  font-size: 20px;
+}
+.feature_card p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+.feature_card:hover {
+  transform: translateY(-5px);
 }

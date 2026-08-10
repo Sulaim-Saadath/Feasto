@@ -126,3 +126,7 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+
+RAZORPAY_KEY_ID = 'rzp_test_T6uwtR7zR6HuId'
+RAZORPAY_KEY_SECRET = 'JcN4tSDywGdeXZ7odZV3PC6O'
