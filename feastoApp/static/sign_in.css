@@ -98,3 +98,15 @@ body {
 .signup_text a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 500px) {
+
+    .signin_card {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .signin_title {
+        font-size: 26px;
+    }
+}
