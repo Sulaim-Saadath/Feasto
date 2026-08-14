@@ -1,33 +1,92 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Page</title>
-  </head>
-  <body>
-    <h3>Welcome {{username}}!</h3>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Restaurant</th>
-          <th>Picture</th>
-          <th>Cuisine</th>
-          <th>Rating</th>
-          <th>Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for r in restaurantList %}
-        <tr>
-          <td>{{r.name}}</td>
-          <td><img src="{{r.picture}}"></td>
-          <td>{{r.cuisine}}</td>
-          <td>{{r.rating}}</td>
-          <td><a href="{% url 'view_menu' r.id username %}">VIEW MENU</a></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </body>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'customer_home.css' %}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            Feasto
+        </div>
+
+        <div class="welcome">
+            Welcome, <span>{{username}}</span> 👋
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <div class="page-title">
+            <h2>Explore Your Favorite Foods and Bervages</h2>
+            <p>Choose a restaurant and explore its delicious menu.</p>
+        </div>
+
+
+        {% if restaurantList %}
+
+        <div class="restaurant-grid">
+
+            {% for r in restaurantList %}
+
+            <div class="restaurant-card">
+
+                <img
+                    src="{{r.picture}}"
+                    alt="{{r.name}}"
+                    class="restaurant-image"
+                >
+
+                <div class="card-content">
+
+                    <h3 class="restaurant-name">
+                        {{r.name}}
+                    </h3>
+
+                    <p class="cuisine">
+                        🍽️ {{r.cuisine}}
+                    </p>
+
+                    <div class="rating">
+                        ⭐ {{r.rating}}
+                    </div>
+
+                    <a
+                        href="{% url 'view_menu' r.id username %}"
+                        class="menu-btn"
+                    >
+                        VIEW MENU
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty">
+            <h3>No restaurants available</h3>
+            <p>Please check again later.</p>
+        </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
 </html>

@@ -3,12 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Feasto Admin</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'admin_home.css' %}">
 </head>
+
 <body>
-    <h1>Welcome to admin page</h1>
-    <a href="open_add_restaurant">ADD NEW RESTAURANT</a>
-    <br>
-    <a href="open_show_restaurant">SHOW RESTAURANT</a>
+    <header class="navbar">
+        <div class="logo">🍴 Feasto</div>
+        <div class="admin-label">
+            Admin Dashboard
+        </div>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome-section">
+            <div>
+                <p class="small-title">RESTAURANT MANAGEMENT</p>
+                <h1>Welcome to Feasto Admin 👋</h1>
+                <p class="subtitle">
+                    Manage your restaurants and menus from one place.
+                </p>
+            </div>
+        </section>
+
+        <section class="action-section">
+            <a href="open_add_restaurant" class="action-card add-card">
+
+                <div class="icon">
+                    +
+                </div>
+                <div class="card-content">
+                    <h2>Add New Restaurant</h2>
+                    <p>
+                        Add a new restaurant and its details to Feasto.
+                    </p>
+                </div>
+                <div class="arrow">
+                    →
+                </div>
+            </a>
+            <a href="open_show_restaurant" class="action-card restaurant-card">
+                <div class="icon">
+                    ☰
+                </div>
+                <div class="card-content">
+                    <h2>Manage Restaurants</h2>
+                    <p>
+                        View, update and manage your existing restaurants.
+                    </p>
+                </div>
+                <div class="arrow">
+                    →
+                </div>
+            </a>
+        </section>
+    </main>
 </body>
 </html>
