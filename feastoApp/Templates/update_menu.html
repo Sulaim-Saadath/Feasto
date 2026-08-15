@@ -1,51 +1,204 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>update_menu</title>
-  </head>
-  <body>
-    <!-- Show Current Menu Here -->
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Item Name</th>
-          <th>Picture</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Is Veg</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in itemList %}
-        <tr>
-          <td>{{item.name}}</td>
-          <td><img src="{{item.picture}}" /></td>
-          <td>{{item.description}}</td>
-          <td>{{item.price}}</td>
-          <td>{{item.vegetarian}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <!-- Add Food Item (FORM) -->
-    <h2>ADD FOOD ITEM</h2>
-    <form method="POST" action=" {% url 'update_menu' restaurant.id %}">
-      {% csrf_token %}
-      <label for="name">Item Name</label>
-      <input type="text" name="name" id="name" required /><br /><br />
-      <label for="description">Description</label>
-      <textarea name="description" id="description" required></textarea
-      ><br /><br />
-      <label for="price">Price</label>
-      <input type="number" name="price" , id="price" step="0.01" required />
-      <br /><br />
-      <label for="vegetarian">Vegetarian</label>
-      <input type="checkbox" id="vegetarian" name="vegetarian" /> <br /><br />
-      <label for="picture">Picture</label>
-      <input type="url" id="picture" name="picture" /> <br /><br />
-      <button type="submit">ADD FOOD ITEM</button>
-    </form>
-  </body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Menu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'update_menu.css' %}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            <span class="logo-icon">🍴</span>
+            Feasto
+        </div>
+
+        <div class="admin-link">
+            Admin Dashboard
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <div class="section-label">
+            MENU MANAGEMENT
+        </div>
+
+        <h1>Update Menu</h1>
+
+        <div class="description">
+            Manage the food items available in this restaurant.
+        </div>
+
+
+        <!-- Current Menu -->
+        <section class="menu-section">
+
+            <h2>Current Menu</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Picture</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Is Veg</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in itemList %}
+
+                        <tr>
+
+                            <td>{{ item.name }}</td>
+
+                            <td>
+                                <img
+                                    src="{{ item.picture }}"
+                                    alt="{{ item.name }}"
+                                    class="food-image"
+                                >
+                            </td>
+
+                            <td>{{ item.description }}</td>
+
+                            <td>₹{{ item.price }}</td>
+
+                            <td>
+                                {% if item.vegetarian %}
+                                    <span class="veg-badge">VEG</span>
+                                {% else %}
+                                    <span class="nonveg-badge">NON-VEG</span>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="5" class="empty-message">
+                                No food items available.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add Food Item -->
+        <section class="form-section">
+
+            <h2>Add Food Item</h2>
+
+            <form method="POST"
+                  action="{% url 'update_menu' restaurant.id %}">
+
+                {% csrf_token %}
+
+
+                <!-- Item Name -->
+                <div class="form-group">
+
+                    <label for="name">
+                        Item Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Description -->
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        id="description"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Price -->
+                <div class="form-group">
+
+                    <label for="price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Vegetarian -->
+                <div class="checkbox-group">
+
+                    <input
+                        type="checkbox"
+                        id="vegetarian"
+                        name="vegetarian"
+                    >
+
+                    <label for="vegetarian">
+                        Vegetarian
+                    </label>
+                </div>
+                <!-- Picture -->
+                <div class="form-group">
+                    <label for="picture">
+                        Picture URL
+                    </label>
+                    <input
+                        type="url"
+                        id="picture"
+                        name="picture"
+                    >
+                </div>
+                <button type="submit">
+                    ADD FOOD ITEM
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
 </html>
