@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: feasto
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn Feasto.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        scope: run_and_build
+        value: ${SECRET_KEY}
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "feasto-render.onrender.com,localhost,127.0.0.1"
+      - key: DATABASE_URL
+        scope: run_and_build
+        fromDatabase:
+          name: feasto_db
+          property: connectionString
+  
+  - type: pserv
+    name: feasto_db
+    ipAllowList: []
+    plan: free
+    region: oregon
+    databaseName: feasto_db
+    databaseUser: feasto_user

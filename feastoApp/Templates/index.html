@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feasto</title>
+    <title>Feasto - Food Delivery</title>
     <!-- Connecting CSS to the html file -->
     {% load static %}
     <link href="{% static 'style.css' %}" rel="stylesheet" />
+    <link href="{% static 'navigation.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <nav>
-      <div>
-        <h1 class="app_name">Feasto</h1>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <span class="logo-emoji">🍕</span>
+        <a href="{% url 'say_hello' %}">Feasto</a>
       </div>
       <div class="auth_links">
-        <a class="nav_link signup_link" href="open_signup">Sign Up</a>
-        <a class="nav_link signin_link" href="open_signin">Sign In</a>
+        <a class="nav_link signup_link" href="{% url 'open_signup' %}">Sign Up</a>
+        <a class="nav_link signin_link" href="{% url 'open_signin' %}">Sign In</a>
       </div>
     </nav>
     <section class="hero">
@@ -25,7 +27,7 @@
           Delicious food from your favorite restaurants, delivered right to your
           doorstep.
         </p>
-        <a class="hero_button" href="#">Explore Restaurants</a>
+        <a class="hero_button" href="{% url 'open_signin' %}">Explore Restaurants</a>
       </div>
       <div class="hero_image">
         <img
@@ -48,5 +50,46 @@
         <p>Discover highly rated restaurants.</p>
       </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>🍕 Feasto</h4>
+          <p>Your favorite food delivery app. Order from the best restaurants near you.</p>
+          <div class="footer-social">
+            <a href="#">f</a>
+            <a href="#">𝕏</a>
+            <a href="#">📷</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Get Started</h4>
+          <ul>
+            <li><a href="{% url 'open_signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'open_signin' %}">Sign In</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Feasto. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>

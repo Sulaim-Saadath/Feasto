@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fail page</title>
+    <title>Sign In Failed - Feasto</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fail.css' %}">
+    <link rel="stylesheet" href="{% static 'navigation.css' %}">
 </head>
 <body>
-    <h1>SIGN IN FAILED!, '{{username}}' does not exist Please Sign UP First</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo-emoji">🍕</span>
+            <a href="{% url 'say_hello' %}">Feasto</a>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="{% url 'say_hello' %}">Home</a></li>
+            <li><a href="{% url 'open_signin' %}">Sign In</a></li>
+            <li><a href="{% url 'open_signup' %}">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{% url 'say_hello' %}">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Authentication Error</span>
+    </div>
+
+    <div class="fail-container">
+        <span class="error-icon">❌</span>
+        <h1 class="fail-title">Sign In Failed!</h1>
+        <p class="fail-message">
+            The username <span class="username-display">'{{username}}'</span> does not exist in our system.
+        </p>
+        <p class="suggestion-text">
+            If you're a new user, please sign up to create an account. If you already have an account, please check your username and try again.
+        </p>
+
+        <div class="action-buttons">
+            <a href="{% url 'open_signup' %}" class="btn btn-signup">📝 Sign Up Now</a>
+            <a href="{% url 'open_signin' %}" class="btn btn-home">🔄 Back to Sign In</a>
+        </div>
+
+        <div class="help-section">
+            <p><strong>Need Help?</strong></p>
+            <p>If you continue to have issues, please <a href="{% url 'say_hello' %}" class="help-link">contact support</a> or <a href="{% url 'say_hello' %}" class="help-link">return to home</a>.</p>
+        </div>
+    </div>
 </body>
 </html>

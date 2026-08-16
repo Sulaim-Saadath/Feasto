@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Page</title>
+    <title>Customer Page - Feasto</title>
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'customer_home.css' %}">
+    <link rel="stylesheet" href="{% static 'navigation.css' %}">
 </head>
 
 <body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo-emoji">🍕</span>
+            <a href="{% url 'say_hello' %}">Feasto</a>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="{% url 'show_cart' username %}">🛒 Cart</a></li>
+        </ul>
+        <div class="nav-user-info">
+            <span class="nav-username">{{username}}</span>
+            <a href="{% url 'say_hello' %}" class="nav-logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{% url 'say_hello' %}">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Browse Restaurants</span>
+    </div>
 
     <!-- Header -->
     <header class="header">
@@ -29,7 +52,7 @@
     <main class="container">
 
         <div class="page-title">
-            <h2>Explore Your Favorite Foods and Bervages</h2>
+            <h2>Explore Your Favorite Foods and Beverages</h2>
             <p>Choose a restaurant and explore its delicious menu.</p>
         </div>
 
@@ -87,6 +110,47 @@
         {% endif %}
 
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🍕 Feasto</h4>
+                <p>Your favorite food delivery app. Order from the best restaurants near you.</p>
+                <div class="footer-social">
+                    <a href="#">f</a>
+                    <a href="#">𝕏</a>
+                    <a href="#">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'show_cart' username %}">My Cart</a></li>
+                    <li><a href="{% url 'say_hello' %}">Browse Restaurants</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Feasto. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

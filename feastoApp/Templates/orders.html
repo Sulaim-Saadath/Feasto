@@ -3,17 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>Order Summary</title>
+    <title>Order Confirmed - Feasto</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'orders.css' %}">
+    <link rel="stylesheet" href="{% static 'navigation.css' %}">
 </head>
 <body>
-    <h1>Thank you for your order, {{ username }}!</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo-emoji">🍕</span>
+            <a href="{% url 'say_hello' %}">Feasto</a>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="{% url 'say_hello' %}">Home</a></li>
+        </ul>
+        <div class="nav-user-info">
+            <span class="nav-username">{{username}}</span>
+            <a href="{% url 'say_hello' %}" class="nav-logout">Logout</a>
+        </div>
+    </nav>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{% url 'say_hello' %}">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Order Confirmation</span>
+    </div>
 
-    <h2>Delivery Address</h2>
-    <p>{{ customer.address }}</p>
+    <div class="orders-header">
+        <h1>✅ Order Confirmed!</h1>
+        <p class="thank-you-message">Thank you for your order, <span>{{ username }}</span>!</p>
+    </div>
 
-    <p>Your order will be delivered to this location shortly. Thank you for choosing Feasto!</p>
+    <div class="orders-container">
+        <div class="order-status">
+            <span class="status-icon">🎉</span>
+            <div class="status-text">
+                <p class="status-title">Your Order Has Been Placed Successfully</p>
+                <p>Your order is being prepared and will be delivered shortly.</p>
+            </div>
+        </div>
 
-    <a href="/">Back to Home</a>
+        <div class="delivery-section">
+            <h2>📍 Delivery Address</h2>
+            <div class="address-card">
+                <p class="address-label">Address</p>
+                <p class="address-text">{{ customer.address }}</p>
+            </div>
+            
+            <div class="estimated-time">
+                <strong>⏱️ Estimated Delivery Time</strong>
+                Your order will be delivered within 30-45 minutes.
+            </div>
+        </div>
+
+        <div class="confirmation-message">
+            <strong>📧 Confirmation Sent</strong>
+            You will receive a confirmation email shortly with your order details and tracking information.
+        </div>
+
+        <div class="help-info">
+            <h3>📋 What Happens Next?</h3>
+            <ul>
+                <li>Your order is being confirmed with the restaurant</li>
+                <li>Your food will be prepared with care</li>
+                <li>Your delivery partner will collect your order</li>
+                <li>Your food will arrive at your doorstep fresh and hot</li>
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'say_hello' %}" class="btn btn-home">🏠 Back to Home</a>
+            <a href="{% url 'say_hello' %}" class="btn btn-orders">🍔 Continue Ordering</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🍕 Feasto</h4>
+                <p>Your favorite food delivery app. Order from the best restaurants near you.</p>
+                <div class="footer-social">
+                    <a href="#">f</a>
+                    <a href="#">𝕏</a>
+                    <a href="#">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'say_hello' %}">Home</a></li>
+                    <li><a href="{% url 'open_signin' %}">Sign In</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Feasto. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

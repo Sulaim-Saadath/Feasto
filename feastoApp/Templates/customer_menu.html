@@ -3,35 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Menu</title>
+    <title>Customer Menu - Feasto</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'customer_menu.css' %}">
+    <link rel="stylesheet" href="{% static 'navigation.css' %}">
 </head>
 <body>
-    <h3>Welcome {{username}}</h3>
-    <a href="{% url 'show_cart' username %}">Go To Cart</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo-emoji">🍕</span>
+            <a href="{% url 'say_hello' %}">Feasto</a>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="{% url 'say_hello' %}">Home</a></li>
+            <li><a href="{% url 'show_cart' username %}">🛒 Cart</a></li>
+        </ul>
+        <div class="nav-user-info">
+            <span class="nav-username">{{username}}</span>
+            <a href="{% url 'say_hello' %}" class="nav-logout">Logout</a>
+        </div>
+    </nav>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Item name</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Is veg?</th>
-                <th>Operation</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in itemList %}
-            <tr>
-                <td>{{ item.name }}</td>
-                <td><img src="{{ item.picture }}"></td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.price }}</td>
-                <td>{{ item.vegetarian}}</td>
-                <td><a href="{% url 'add_to_cart' item.id username %}">ADD TO CART</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{% url 'say_hello' %}">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Menu - {{ restaurant.name }}</span>
+    </div>
+
+    <div class="menu-header">
+        <p class="welcome-text">Welcome, <span>{{username}}</span> 👋</p>
+        <a href="{% url 'show_cart' username %}" class="cart-link">🛒 View Cart</a>
+    </div>
+
+    <div class="menu-container">
+        <table class="menu-table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Picture</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Vegetarian</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itemList %}
+                <tr>
+                    <td class="item-name">{{ item.name }}</td>
+                    <td><img src="{{ item.picture }}" class="item-image" alt="{{ item.name }}"></td>
+                    <td class="item-description">{{ item.description }}</td>
+                    <td class="item-price">₹{{ item.price }}</td>
+                    <td>
+                        <span class="veg-badge {% if item.vegetarian %}veg{% else %}non-veg{% endif %}">
+                            {% if item.vegetarian %}🥬 Veg{% else %}🍗 Non-Veg{% endif %}
+                        </span>
+                    </td>
+                    <td><a href="{% url 'add_to_cart' item.id username %}" class="add-to-cart-btn">ADD TO CART</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🍕 Feasto</h4>
+                <p>Your favorite food delivery app. Order from the best restaurants near you.</p>
+                <div class="footer-social">
+                    <a href="#">f</a>
+                    <a href="#">𝕏</a>
+                    <a href="#">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'say_hello' %}">Home</a></li>
+                    <li><a href="{% url 'show_cart' username %}">My Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Feasto. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

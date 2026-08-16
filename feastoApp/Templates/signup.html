@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Sign Up - Feasto</title>
     {% load static %}
     <link href="{% static 'sign_up.css' %}" rel="stylesheet" />
+    <link href="{% static 'navigation.css' %}" rel="stylesheet" />
   </head>
   <body>
+    <!-- Quick Navigation -->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <span class="logo-emoji">🍕</span>
+        <a href="{% url 'say_hello' %}">Feasto</a>
+      </div>
+      <ul class="navbar-menu">
+        <li><a href="{% url 'say_hello' %}">Home</a></li>
+        <li><a href="{% url 'open_signin' %}">Sign In</a></li>
+      </ul>
+    </nav>
+
     <div class="signup-container">
       <h3>🍽️ Create Your Account</h3>
       <form action="{% url 'signup' %}" method="POST">
@@ -18,6 +31,7 @@
             type="text"
             name="username"
             placeholder="👤 Enter your username"
+            required
           />
         </div>
 
@@ -27,12 +41,13 @@
             type="password"
             name="password"
             placeholder="🔒 Enter your password"
+            required
           />
         </div>
 
         <div class="form-group">
           <label>Email</label>
-          <input type="email" name="email" placeholder="📧 Enter your email" />
+          <input type="email" name="email" placeholder="📧 Enter your email" required />
         </div>
 
         <div class="form-group">
@@ -41,6 +56,7 @@
             type="text"
             name="mobile"
             placeholder="📱 Enter your mobile number"
+            required
           />
         </div>
 
@@ -49,6 +65,7 @@
           <textarea
             name="address"
             placeholder="🏠 Enter your address"
+            required
           ></textarea>
         </div>
         <button type="submit">SIGN UP</button>
@@ -56,6 +73,10 @@
       <p class="signin-text">
         Already have an account?
         <a href="{% url 'open_signin' %}">Sign In</a>
+      </p>
+      
+      <p class="signin-text" style="font-size: 12px; margin-top: 15px; border-top: 1px solid #ddd; padding-top: 15px;">
+        <a href="{% url 'say_hello' %}" style="color: #999;">Back to Home</a>
       </p>
     </div>
   </body>

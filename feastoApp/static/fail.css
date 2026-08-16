@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ================= FAIL CONTAINER ================= */
+
+.fail-container {
+  background: white;
+  border-radius: 15px;
+  padding: 50px 40px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= ERROR ICON ================= */
+
+.error-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* ================= ERROR TITLE ================= */
+
+.fail-title {
+  color: #ff2520;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  word-break: break-word;
+}
+
+/* ================= ERROR MESSAGE ================= */
+
+.fail-message {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+}
+
+.username-display {
+  color: #ff6b35;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* ================= SUGGESTION TEXT ================= */
+
+.suggestion-text {
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-signup {
+  background-color: #ff6b35;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-signup:hover {
+  background-color: #e85a2a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-home {
+  background-color: #e8e8e8;
+  color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-home:hover {
+  background-color: #d0d0d0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= ADDITIONAL HELP ================= */
+
+.help-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  color: #999;
+  font-size: 13px;
+}
+
+.help-section p {
+  margin: 10px 0;
+}
+
+.help-link {
+  color: #ff6b35;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+  color: #e85a2a;
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 600px) {
+  .fail-container {
+    padding: 35px 25px;
+  }
+
+  .fail-title {
+    font-size: 22px;
+  }
+
+  .fail-message {
+    font-size: 14px;
+  }
+
+  .error-icon {
+    font-size: 60px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .fail-container {
+    padding: 25px 20px;
+  }
+
+  .fail-title {
+    font-size: 18px;
+  }
+
+  .fail-message {
+    font-size: 13px;
+  }
+
+  .error-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+
+  .suggestion-text {
+    font-size: 12px;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .help-section {
+    font-size: 12px;
+  }
+}
