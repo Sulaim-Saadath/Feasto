@@ -18,7 +18,7 @@ services:
         value: "False"
 
       - key: ALLOWED_HOSTS
-        value: "feasto.onrender.com,localhost,127.0.0.1"
+        value: "feasto-qf6y.onrender.com,localhost,127.0.0.1"
 
       - key: DATABASE_URL
         fromDatabase:
