@@ -20,3 +20,8 @@ staticfiles/
 
 # Logs
 *.loggit status
+
+.feasto_data.json
+feasto_data.json
+
+restaurant_items.json
