@@ -16,6 +16,25 @@ def open_signup(request):
 def open_signin(request):
     return render(request, "signin.html")
 
+# def signup(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         email = request.POST.get('email')
+#         mobile = request.POST.get('mobile')
+#         address = request.POST.get('address')
+#         try:
+#             Customer.objects.get(username = username)
+#             return HttpResponse("Duplicate Username!")
+#         except:
+#             Customer.objects.create(
+#                 username = username,
+#                 password = password,
+#                 email = email,
+#                 mobile = mobile,
+#                 address = address,
+#             )
+#     return render(request, "signin.html") 
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -23,18 +42,21 @@ def signup(request):
         email = request.POST.get('email')
         mobile = request.POST.get('mobile')
         address = request.POST.get('address')
-        try:
-            Customer.objects.get(username = username)
+
+        if Customer.objects.filter(username=username).exists():
             return HttpResponse("Duplicate Username!")
-        except:
-            Customer.objects.create(
-                username = username,
-                password = password,
-                email = email,
-                mobile = mobile,
-                address = address,
-            )
-    return render(request, "signin.html") 
+
+        Customer.objects.create(
+            username=username,
+            password=password,
+            email=email,
+            mobile=mobile,
+            address=address,
+        )
+
+        return render(request, "signin.html")
+
+    return render(request, "signup.html")
 
 def signin(request):
     if request.method == 'POST':
